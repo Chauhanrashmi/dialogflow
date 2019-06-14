@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn{
+   margin-left: 248px;
+   background-color: #91c3f2;
+    width: 75px;
+    height: 30px;
+    border-radius: 35px;
+}
+.head{
+   font-family: sans-serif;
+   font-size: 50px;
+   font-weight: 900;
+}
+.main{
+   font-size: 22px;
+}
+.to{
+	width: 500px;
+	text-align: right !important;
+}
+.message{
+	width:500px;
+	text-align: left;
+  color: brown;
+}
+.lbl{
+	margin-top:10px;
+}
+.to a{
+  pointer-events: none;
+    color: black;
+    text-decoration: none;
+}
+.to p{
+  display: none;
+
+}
+.message p{
+  margin-bottom: 0px;
+}
+</style>
+
+<body>
+<h1  class="head" align="center">My First Chat Bot</h1>
+<div class="main" align="center">
+<ng-container *ngFor="let message of messages | async">
+
+<div class="message" [ngClass]="{'from': message.sentBy === 'Bot',
+                                      'to' : message.sentBy === 'user' }" >
+    <p>Click Here: </p><a href="{{message.content}}" target=_blank>{{message.content}}</a>
+
+</div>
+
+</ng-container>
+
+<div class="lbl">
+<label for="nameField"><i class="fa fa-paper-plane-o" style="color:red"></i>YOUR MESSAGE: </label>
+<input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text" ><br><br>
+</div>
+
+<button class="btn" (click)="sendMessage()">SEND</button>
+</div>
+</body>
